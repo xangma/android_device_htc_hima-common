@@ -56,6 +56,7 @@ ENABLE_CPUSETS := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/htc/msm8994
 TARGET_KERNEL_CONFIG := lineageos_hima_defconfig
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_USES_UNCOMPRESSED_KERNEL := true
 
 # Audio
