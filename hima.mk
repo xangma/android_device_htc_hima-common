@@ -97,9 +97,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
+# Bluetooth HAL
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl
+
 # Camera
 PRODUCT_PACKAGES += \
-    libshim_camera \
+		camera.device@1.0-impl \
+		android.hardware.camera.provider@2.4-impl \
+		libshim_camera \
     Snap
 
 # Display
@@ -130,6 +136,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf
 
+PRODUCT_PACKAGES += \
+		android.hardware.gnss@1.0-impl
 # HIDL
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
@@ -180,10 +188,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     keystore.msm8994
 
+#Keymaster Hal
+PRODUCT_PACKAGES += \
+		android.hardware.keymaster@3.0-impl
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8994
 
+PRODUCT_PACKAGES += \
+		android.hardware.light@2.0impl
 # Media
 PRODUCT_PACKAGES += \
     libdashplayer \
@@ -233,6 +247,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     power.msm8994
 
+PRODUCT_PACKAGES += \
+		android.hardware.power@1.0-impl
+
 # QMI
 PRODUCT_PACKAGES += \
     dsi_config.xml \
@@ -242,6 +259,10 @@ PRODUCT_PACKAGES += \
 # Recovery
 PRODUCT_PACKAGES += \
     librecovery_updater_hima
+
+# Renderscript HAL
+PRODUCT_PACKAGES += \
+		android.hardware.renderscript@1.0-impl
 
 # RIL
 PRODUCT_PACKAGES += \
@@ -255,11 +276,20 @@ PRODUCT_COPY_FILES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
+		com.android.future.usb.accessory
 
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
 # Wifi
 PRODUCT_PACKAGES += \
     libwpa_client \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf
+
+PRODUCT_PACKAGES += \
+		android.hardware.wifi@1.0-service
