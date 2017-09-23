@@ -190,9 +190,10 @@ err_ret:
 }
 
 /* verify_sbl1("SBL1_VERSION", "SBL1_VERSION", ...) */
-Value * VerifySBL1Fn(const char *name, State *state, int argc, Expr *argv[]) {
+Value * VerifySBL1Fn(const char *name, State *state, const std::vector<std::unique_ptr<Expr>>& argv) {
     char current_sbl1_version[SBL1_VER_BUF_LEN];
-    int i, ret;
+    size_t i;
+    int ret;
 
     ret = get_sbl1_version(current_sbl1_version, SBL1_VER_BUF_LEN);
     if (ret) {
@@ -200,32 +201,29 @@ Value * VerifySBL1Fn(const char *name, State *state, int argc, Expr *argv[]) {
                 name, ret);
     }
 
-    char** sbl1_version = ReadVarArgs(state, argc, argv);
-    if (sbl1_version == NULL) {
+    std::vector<std::string> sbl1_version;
+    if (!ReadArgs(state, argv, &sbl1_version)) {
         return ErrorAbort(state, "%s() error parsing arguments", name);
     }
 
     ret = 0;
-    for (i = 0; i < argc; i++) {
-        uiPrintf(state, "Checking for SBL1 version %s\n", sbl1_version[i]);
-        if (strncmp(sbl1_version[i], current_sbl1_version, strlen(sbl1_version[i])) == 0) {
+    for (const auto& version : sbl1_version) {
+        uiPrintf(state, "Checking for SBL1 version %s\n",
+          version.c_str());
+        if (strncmp(sbl1_version.c_srt(), current_sbl1_version, version.length()) == 0) {
             ret = 1;
             break;
         }
     }
 
-    for (i = 0; i < argc; i++) {
-        free(sbl1_version[i]);
-    }
-    free(sbl1_version);
-
     return StringValue(strdup(ret ? "1" : "0"));
 }
 
 /* verify_trustzone("TZ_VERSION", "TZ_VERSION", ...) */
-Value * VerifyTrustZoneFn(const char *name, State *state, int argc, Expr *argv[]) {
+Value * VerifyTrustZoneFn(const char *name, State *state, const std::vector<std::unique_ptr<Expr>>& argv) {
     char current_tz_version[TZ_VER_BUF_LEN];
-    int i, ret;
+    size_t i;
+    int ret;
 
     ret = get_tz_version(current_tz_version, TZ_VER_BUF_LEN);
     if (ret) {
@@ -233,24 +231,20 @@ Value * VerifyTrustZoneFn(const char *name, State *state, int argc, Expr *argv[]
                 name, ret);
     }
 
-    char** tz_version = ReadVarArgs(state, argc, argv);
-    if (tz_version == NULL) {
+    std::vector<std::string> tz_version;
+    if (!ReadArgs(state, argv, &tz_version)) {
         return ErrorAbort(state, "%s() error parsing arguments", name);
     }
 
     ret = 0;
-    for (i = 0; i < argc; i++) {
-        uiPrintf(state, "Checking for TZ version %s\n", tz_version[i]);
-        if (strncmp(tz_version[i], current_tz_version, strlen(tz_version[i])) == 0) {
+    for (const auto& version : tz_version) {
+        uiPrintf(state, "Checking for TZ version %s\n",
+          version.c_str());
+        if (strncmp(tz_version.c_str(), current_tz_version, version.length()) == 0) {
             ret = 1;
             break;
         }
     }
-
-    for (i = 0; i < argc; i++) {
-        free(tz_version[i]);
-    }
-    free(tz_version);
 
     return StringValue(strdup(ret ? "1" : "0"));
 }
