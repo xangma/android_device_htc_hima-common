@@ -72,7 +72,6 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    audiod \
     audio.a2dp.default \
     audio.primary.msm8994 \
     audio.r_submix.default \
@@ -82,7 +81,15 @@ PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
+		libqcomvoiceprocessingdescriptors \
     tinymix
+
+PRODUCT_PACKAGES += \
+		    android.hardware.audio@2.0-impl \
+		    android.hardware.audio.effect@2.0-impl \
+		    android.hardware.broadcastradio@1.0-impl \
+		    android.hardware.radio.deprecated-V1.0-java \
+		    android.hardware.soundtrigger@2.0-impl
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
