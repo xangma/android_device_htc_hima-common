@@ -174,6 +174,28 @@ PRODUCT_PACKAGES += \
     lights.msm8994
 
 # Media
+PRODUCT_PACKAGES += \
+    libdashplayer \
+    libdivxdrmdecrypt \
+    libextmedia_jni \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxCore \
+    libmm-omxcore \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
+    libOmxSwVencMpeg4 \
+    libOmxSwVencHevc \
+    libOmxVdec \
+    libOmxVdecHevc \
+    libOmxVenc \
+    libOmxVidcCommon \
+    libstagefrighthw \
+    libstagefright_soft_flacdec
+
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
@@ -195,26 +217,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
     $(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
     $(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
-
-# OMX
-PRODUCT_PACKAGES += \
-    libc2dcolorconvert \
-    libdashplayer \
-    libdivxdrmdecrypt \
-    libextmedia_jni \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libOmxCore \
-    libOmxEvrcEnc \
-    libOmxQcelp13Enc \
-    libOmxSwVencMpeg4 \
-    libOmxSwVencHevc \
-    libOmxVdec \
-    libOmxVdecHevc \
-    libOmxVenc \
-    libOmxVidcCommon \
-    libstagefrighthw \
-    libstagefright_soft_flacdec
 
 # Power
 PRODUCT_PACKAGES += \
