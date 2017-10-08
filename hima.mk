@@ -108,7 +108,7 @@ PRODUCT_PACKAGES += \
     Dotcase
 
 # Gello
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     Gello
 
 # Gesture Handler
