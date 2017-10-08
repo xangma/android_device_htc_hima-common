@@ -36,6 +36,7 @@ on early-init
     mkdir /firmware 0771 system system
     mkdir /firmware/adsp 0771 system system
     mkdir /firmware/cpe 0771 system system
+    mkdir /firmware/image 0771 system system
     mkdir /firmware/radio 0771 system system
 
     symlink /dev/pn544 /dev/pn54x
@@ -363,8 +364,8 @@ on property:sys.qbcharger.enable=false
 
 service cir_fw_update /system/bin/cir_fw_update -u cir.img
     class main
-    user root
-    group root
+    user system
+    group system
     oneshot
 
 service energy-awareness /system/bin/energy-awareness
@@ -397,7 +398,8 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
 
 service netmgrd /system/bin/netmgrd
     class main
-    group radio
+    user root
+    group root wifi wakelock radio inet
     writepid /dev/cpuset/system-background/tasks
 
 service per_mgr /system/bin/pm-service
@@ -422,6 +424,7 @@ on property:sys.shutdown.requested=*
 service perfd /system/vendor/bin/perfd
    class main
    user root
+   group root readproc
    disabled
    writepid /dev/cpuset/system-background/tasks
 
@@ -451,6 +454,7 @@ service rfs_access /system/bin/rfs_access
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
+    group system wakelock
     writepid /dev/cpuset/system-background/tasks
 
 service thermal-engine /system/vendor/bin/thermal-engine

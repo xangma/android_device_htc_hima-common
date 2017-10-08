@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
      Copyright (C) 2016 The CyanogenMod Project
+                   2017 The LineageOS Project
 
      Licensed under the Apache License, Version 2.0 (the "License"
      you may not use this file except in compliance with the License.
@@ -15,53 +16,56 @@
      limitations under the License.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+                  xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+        android:key="touchscreen_gesture_settings" >
 
     <PreferenceCategory
         android:key="screen_actions_key"
-        android:title="@string/screen_actions_title" >
-
-        <SwitchPreference
-            android:key="double_tap_enable_key"
-            android:defaultValue="false"
-            android:title="@string/double_tap_enable_title"
-            android:summary="@string/double_tap_enable_summary" />
+        android:title="@string/gesture_display_title" >
 
         <ListPreference
             android:key="swipe_up_action_key"
             android:defaultValue="0"
-            android:title="@string/swipe_up_title"
-            android:dialogTitle="@string/swipe_up_title"
-            android:summary="@string/swipe_up_summary"
+            android:title="@string/touchscreen_swipe_up_title"
+            android:dialogTitle="@string/touchscreen_swipe_up_title"
             android:entries="@array/action_entries"
             android:entryValues="@array/action_values" />
 
         <ListPreference
             android:key="swipe_down_action_key"
             android:defaultValue="0"
-            android:title="@string/swipe_down_title"
-            android:dialogTitle="@string/swipe_down_title"
-            android:summary="@string/swipe_down_summary"
+            android:title="@string/touchscreen_swipe_down_title"
+            android:dialogTitle="@string/touchscreen_swipe_down_title"
             android:entries="@array/action_entries"
             android:entryValues="@array/action_values" />
 
         <ListPreference
             android:key="swipe_left_action_key"
             android:defaultValue="0"
-            android:title="@string/swipe_left_title"
-            android:dialogTitle="@string/swipe_left_title"
-            android:summary="@string/swipe_left_summary"
+            android:title="@string/touchscreen_swipe_left_title"
+            android:dialogTitle="@string/touchscreen_swipe_left_title"
             android:entries="@array/action_entries"
             android:entryValues="@array/action_values" />
 
         <ListPreference
             android:key="swipe_right_action_key"
             android:defaultValue="0"
-            android:title="@string/swipe_right_title"
-            android:dialogTitle="@string/swipe_right_title"
-            android:summary="@string/swipe_right_summary"
+            android:title="@string/touchscreen_swipe_right_title"
+            android:dialogTitle="@string/touchscreen_swipe_right_title"
             android:entries="@array/action_entries"
             android:entryValues="@array/action_values" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="extra_settings_key"
+        android:title="@string/touchscreen_gesture_extras" >
+
+        <cyanogenmod.preference.CMSystemSettingSwitchPreference
+            android:key="touchscreen_gesture_haptic_feedback"
+            android:title="@string/touchscreen_gesture_haptic_feedback"
+            android:summary="@string/touchscreen_gesture_haptic_feedback_summary"
+            android:defaultValue="true" />
 
     </PreferenceCategory>
 
