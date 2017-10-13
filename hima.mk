@@ -107,13 +107,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Dotcase
 
-<<<<<<< HEAD
-# Gello
-#PRODUCT_PACKAGES += \
-    Gello
-
-=======
->>>>>>> 1767f42a12278d65cde4f04138b3ce135e9747b1
 # Gesture Handler
 PRODUCT_PACKAGES += \
     GestureHandler
