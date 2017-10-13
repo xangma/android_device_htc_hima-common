@@ -31,9 +31,9 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, $(LOCAL_PATH)/extras/phone-xxhdpi-2048-dalvik-heap.mk)
 
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+$(call inherit-product, $(LOCAL_PATH)/extras/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Add WiFi Config files
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
@@ -72,7 +72,6 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    audiod \
     audio.a2dp.default \
     audio.primary.msm8994 \
     audio.r_submix.default \
@@ -82,7 +81,15 @@ PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
+		libqcomvoiceprocessingdescriptors \
     tinymix
+
+PRODUCT_PACKAGES += \
+		    android.hardware.audio@2.0-impl \
+		    android.hardware.audio.effect@2.0-impl \
+		    android.hardware.broadcastradio@1.0-impl \
+		    android.hardware.radio.deprecated-V1.0-java \
+		    android.hardware.soundtrigger@2.0-impl
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
@@ -90,9 +97,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
+# Bluetooth HAL
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl
+
 # Camera
 PRODUCT_PACKAGES += \
-    libshim_camera \
+		camera.device@1.0-impl \
+		android.hardware.camera.provider@2.4-impl \
+		libshim_camera \
     Snap
 
 # Display
@@ -103,17 +116,31 @@ PRODUCT_PACKAGES += \
     memtrack.msm8994 \
     liboverlay
 
+PRODUCT_PACKAGES += \
+		android.hardware.graphics.composer@2.1-impl \
+		android.hardware.graphics.allocator@2.0-impl \
+		android.hardware.graphics.allocator@2.0-service \
+		android.hardware.graphics.mapper@2.0-impl \
+		android.hardware.memtrack@1.0-impl \
+		android.hardware.renderscript@1.0-impl
+
 # Dot View Case
 PRODUCT_PACKAGES += \
     Dotcase
 
 # Gesture Handler
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     GestureHandler
 
 # GPS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf
+
+PRODUCT_PACKAGES += \
+		android.hardware.gnss@1.0-impl
+# HIDL
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
 
 # HTC Logging functions
 PRODUCT_PACKAGES += \
@@ -140,7 +167,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl
 
 # IPACM
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     IPACM_cfg.xml \
     ipacm
 
@@ -161,11 +188,39 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     keystore.msm8994
 
+#Keymaster Hal
+PRODUCT_PACKAGES += \
+		android.hardware.keymaster@3.0-impl
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8994
 
+PRODUCT_PACKAGES += \
+		android.hardware.light@2.0impl
 # Media
+PRODUCT_PACKAGES += \
+    libdashplayer \
+    libdivxdrmdecrypt \
+    libextmedia_jni \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxCore \
+    libmm-omxcore \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
+    libOmxSwVencMpeg4 \
+    libOmxSwVencHevc \
+    libOmxVdec \
+    libOmxVdecHevc \
+    libOmxVenc \
+    libOmxVidcCommon \
+    libstagefrighthw \
+    libstagefright_soft_flacdec
+
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
@@ -188,29 +243,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
     $(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
 
-# OMX
-PRODUCT_PACKAGES += \
-    libc2dcolorconvert \
-    libdashplayer \
-    libdivxdrmdecrypt \
-    libextmedia_jni \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libOmxCore \
-    libOmxEvrcEnc \
-    libOmxQcelp13Enc \
-    libOmxSwVencMpeg4 \
-    libOmxSwVencHevc \
-    libOmxVdec \
-    libOmxVdecHevc \
-    libOmxVenc \
-    libOmxVidcCommon \
-    libstagefrighthw \
-    libstagefright_soft_flacdec
-
 # Power
 PRODUCT_PACKAGES += \
     power.msm8994
+
+PRODUCT_PACKAGES += \
+		android.hardware.power@1.0-impl
 
 # QMI
 PRODUCT_PACKAGES += \
@@ -221,6 +259,10 @@ PRODUCT_PACKAGES += \
 # Recovery
 PRODUCT_PACKAGES += \
     librecovery_updater_hima
+
+# Renderscript HAL
+PRODUCT_PACKAGES += \
+		android.hardware.renderscript@1.0-impl
 
 # RIL
 PRODUCT_PACKAGES += \
@@ -234,11 +276,20 @@ PRODUCT_COPY_FILES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
+		com.android.future.usb.accessory
 
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
 # Wifi
 PRODUCT_PACKAGES += \
     libwpa_client \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf
+
+PRODUCT_PACKAGES += \
+		android.hardware.wifi@1.0-service
