@@ -99,12 +99,13 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth HAL
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service \
+		libbt-vendor
 
 # Camera
 PRODUCT_PACKAGES += \
-		camera.device@1.0-impl \
-		android.hardware.camera.provider@2.4-impl \
+		android.hardware.camera.provider@2.4-impl-legacy \
 		libshim_camera \
     Snap
 
@@ -118,6 +119,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
 		android.hardware.graphics.composer@2.1-impl \
+		android.hardware.graphics.composer@2.1-service \
 		android.hardware.graphics.allocator@2.0-impl \
 		android.hardware.graphics.allocator@2.0-service \
 		android.hardware.graphics.mapper@2.0-impl \
@@ -141,6 +143,11 @@ PRODUCT_PACKAGES += \
 # HIDL
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
+
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@1.0-impl \
+		android.hardware.health@1.0-service
 
 # HTC Logging functions
 PRODUCT_PACKAGES += \
@@ -190,14 +197,15 @@ PRODUCT_PACKAGES += \
 
 #Keymaster Hal
 PRODUCT_PACKAGES += \
-		android.hardware.keymaster@3.0-impl
+		android.hardware.keymaster@3.0-impl \
+		android.hardware.keymaster@3.0-service
 
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8994
 
 PRODUCT_PACKAGES += \
-		android.hardware.light@2.0impl
+		android.hardware.light@2.0-impl
 # Media
 PRODUCT_PACKAGES += \
     libdashplayer \
@@ -219,7 +227,8 @@ PRODUCT_PACKAGES += \
     libstagefright_soft_flacdec
 
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl
+    android.hardware.drm@1.0-impl \
+		android.hardware.drm@1.0-service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
@@ -233,10 +242,11 @@ PRODUCT_COPY_FILES += \
 
 # NFC
 PRODUCT_PACKAGES += \
+		android.hardware.nfc@1.0-impl \
+		android.hardware.nfc@1.0-service \
     com.android.nfc_extras \
     NfcNci \
-    nfc_nci.pn54x.default \
-    Tag
+		nfc_nci.msm8994
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
@@ -248,7 +258,8 @@ PRODUCT_PACKAGES += \
     power.msm8994
 
 PRODUCT_PACKAGES += \
-		android.hardware.power@1.0-impl
+		android.hardware.power@1.0-impl \
+    android.hardware.power@1.0-service \
 
 # QMI
 PRODUCT_PACKAGES += \
@@ -284,6 +295,7 @@ PRODUCT_PACKAGES += \
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl
+
 # Wifi
 PRODUCT_PACKAGES += \
     libwpa_client \
