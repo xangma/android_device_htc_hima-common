@@ -82,6 +82,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Charger
 BOARD_CHARGING_CMDLINE_NAME := "androidboot.mode"
 BOARD_CHARGING_CMDLINE_VALUE := "chargerlogo"
+WITH_LINEAGE_CHARGER := false
 
 # Lineage Hardware
 BOARD_HARDWARE_CLASS := $(COMMON_PATH)/lineagehw
