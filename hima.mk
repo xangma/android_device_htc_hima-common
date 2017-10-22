@@ -191,10 +191,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
 
-# Keymaster
-PRODUCT_PACKAGES += \
-    keystore.msm8994
-
 #Keymaster Hal
 PRODUCT_PACKAGES += \
 		android.hardware.keymaster@3.0-impl \
